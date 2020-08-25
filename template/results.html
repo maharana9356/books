@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block head %}
+   <style>
+       body{
+             background-image: url("/static/img3.jpg");
+             background-repeat:no repeat;
+             background-attachment: fixed;
+             background-size: cover;
+       }
+   </style>
+{% endblock %}
+
+{% block content %}
+<h2 style="text-aling:center;color:Tomato"> Your Search Result </h2>
+<div class="list-group">
+    {% for book in books %}
+      <a href="/book/{{book['isbn']}}" class="list-group-item list-group-item-action">
+          <h4 class="card-title">{{book['title']}}</h4>
+          <h6 class="card-text">{{book['author']}}</h6>
+          <h6 class="card-text">{{book['year']}}</h6>
+          <h6 class="card-text">{{book['isbn']}}</h6>
+      </a>
+    {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Home
+{% endblock %}
+
+{% block head %}
+   <style>
+       body{
+             background-image: url("/static/img3.jpg");
+             background-repeat:no repeat;
+             background-attachment: fixed;
+             background-size: cover;
+       }
+
+       span.small {
+  font-size: smaller;
+  color: rgba(0, 0, 0, 1);
+}
+   </style>
+{% endblock %}
+
+{% block content %}
+  <h2 style="text-align:center;color:Tomato">Search for book!</h2>
+  <form action="/search" method="GET">
+      <div class="form-group">
+         <input type="text" class="form-control" autocomplete="off" placeholder="ISBN,Title or Author" name="book">
+          <p><span class="small">Example: 0375508325, Cosmos or Carl Sagan</span></p>
+      </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+{% endblock %}

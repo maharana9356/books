@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+{% block title %}
+{{bookInfo[0]['title']}}
+{% endblock %}
+
+{% block head %}
+<style xmlns="http://www.w3.org/1999/html">
+       body{
+             background-image: url("/static/img4.jpg");
+             background-repeat:no repeat;
+             background-attachment: fixed;
+             background-size: cover;
+       }
+       .center {
+             margin: auto;
+             width: 60%;
+             border: 3px solid #73AD21;
+             padding: 10px;
+        }
+   </style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+
+     <div class="col-sm">
+      <img src="http://covers.openlibrary.org/b/isbn/{{bookInfo[0]['isbn']}}-M.jpg" width="130px">
+    </div>
+      <hr>
+    <div class="col-sm">
+      <h1>{{bookInfo[0]['title']}}</h1>
+            <h5>Author: {{bookInfo[0]['author']}}</h5>
+            <h5>Published: {{bookInfo[0]['year']}}</h5>
+            <h5>ISBN-10: {{bookInfo[0]['isbn']}}</h5>
+    </div>
+      <hr>
+    <div class="col-sm">
+       <img class="mb-3" src="../static/goodreads.jpg" alt="Goodreads" width="200" height="45">
+            <h5>Total Ratings count: {{bookInfo[1]['work_ratings_count']}}</h5>
+            <h5>Average Rating: {{bookInfo[1]['average_rating']}}</h5>
+            <h5>
+                <a href="https://www.goodreads.com/search?q={{bookInfo[0]['title']}}">Goodreads page</a>
+            </h5>
+    </div>
+  </div>
+    <hr>
+
+    <h3 style="text-align:center;">USERS REVIEWS</h3>
+
+   <form method="POST" class="form-border">
+       <div class="center">
+    <h5>Submit your review!</h5>
+    <span>
+     RATING:
+     <select id="rating" name="rating" required>
+         <option value="1">1</option>
+         <option value="2">2</option>
+         <option selected value="3">3</option>
+         <option value="4">4</option>
+         <option value="5">5</option>
+     </select>
+   </span>
+    <input type="text" placeholder="write your review" name="comment">
+    <div></div>
+           <div class="form-group col-sm">
+               <button class="btn btn-success" type="submit">Submit</button>
+           </div>
+       </div>
+   </form>
+  <hr>
+   <div class="list-group">
+       {% for review in reviews %}
+       <li class="list-group-item">
+           <h6>{{review['username']}}-</h6>
+           <small>{{review['time']}}</small>
+           <p>{{review['comments']}}</p>
+           <small>Rated: {{review['rating']}}</small>
+       </li>
+       {% endfor %}
+   </div>
+</div>
+{% endblock %}
