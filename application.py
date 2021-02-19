@@ -194,7 +194,7 @@ def book(isbn):
                         })
 
         if row1.rowcount == 1:
-            flash("bsdk ek baar ho gya h","info")
+            flash("Already submitted review can't submit again","info")
             return render_template("book.html", bookInfo=book_info, reviews=reviews)
             #return redirect('/book/'+isbn) not working flash here
         rating=int(rating)
